@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title  class = "title" text-center>
+      <p></p>
+      <p></p>
+      QuickList
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <p [hidden]="checklist && checklist.length > 0">You must be new here. Create a list and get to work.</p>
+
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label>Sort Remaining Items in</ion-label>
+      <ion-select [(ngModel)]="remainSort" (ionChange)="sortByremian()">
+        <ion-select-option value="ascending" >Ascending</ion-select-option>
+        <ion-select-option value="Descending" >descending</ion-select-option>
+        <ion-select-option value="no" >Nothing</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngFor="let item of checklist" (click)="selectItem(item)">
+      <ion-label>
+        {{ item.getTitle() }}
+      </ion-label>
+      <ion-button color="primary" fill="outline" (click)="deleteItem(item)"><ion-icon slot="icon-only" name="trash"></ion-icon></ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-input placeholder="New Item" [(ngModel)]="itemTitle"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-button (click)="addItem()" ><ion-icon slot="icon-only" name="add-circle"></ion-icon></ion-button>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
